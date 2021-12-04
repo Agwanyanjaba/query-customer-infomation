@@ -1,0 +1,11 @@
+server:
+ port: 8080
+
+vooma:
+ bridge:
+  channel-code: 1021
+  endpoint: http://172.16.114.7:30001/payment/services/APIRequestMgrService
+  third-party-id: POS_Broker
+
+
+
