@@ -22,7 +22,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+//import org.springframework.web.bind.annotation.ResponseBody;
+
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.ResponseBody;
+import java.net.URL;
 
 @Controller
 @RequestMapping("agency-payments")
@@ -38,15 +44,30 @@ public class AgentWithdrawalController {
     private String customerMobile;
     private String channelCode;
     private double transactionAmount;
+    private String requestUrl;
+    private String keyOwner;
+    private String requestorSystemCode;
+    private String initiatorIdentifierType;
+    private String initiatorIdentifier;
+    private String initiatorSecurityCredential; 
+    private String callerType;
+    private String password; 
+    private String receiverPartyIdentifier;
+    private String redisRouteCode;
+    private String redisAuthorization;
+    private String redisMessageId;
+    private String redisChannelCode;
+    private String redisUrl;
+    private String initiatorShortCode;
+    private String businessKeyType;
 
     @Autowired
     WithdrawalConfigurations withdrawalConfigurations;
 
-    @PostMapping(path = "/v1/agent-withdrawal", produces = "application/json")
-    @ResponseBody
+    @PostMapping(path = "/agent-withdrawal", produces = "application/json")
+    @org.springframework.web.bind.annotation.ResponseBody
     public String agentDeposit(@RequestBody AgentWithdrawalModel agentWithdrawalModel,
             @RequestHeader(value = "System-Credentials") String basicAuth) throws JsonProcessingException {
-               //System.out.println(">>>>>>>>"+basicAuth);
         // validate user credentials
         // get specific value of auth string and match with in memory basic auth
         //String authValue = basicAuth.substring(6, basicAuth.length());
@@ -54,14 +75,60 @@ public class AgentWithdrawalController {
 
         if (authValue.equals(HelperUtility.encodeUserCredentials())) {
             LOGGER.info(agentWithdrawalModel.getIdentifier());
-            System.out.println(agentWithdrawalModel.getThirdPartyID());
+            //Get values from request Body
+              // Get values from request body
+              originatorConversationID = agentWithdrawalModel.getOriginatorConversationID();
+              channelCode = withdrawalConfigurations.getChannelCode();
+              customerMobile = agentWithdrawalModel.getIdentifier();
+              transactionAmount = agentWithdrawalModel.getTransactionAmount();
+              receiverPartyIdentifier = agentWithdrawalModel.getReceiverPartyIdentifierType()
+              //Values from config file
+            callerType = withdrawalConfigurations.getCallerType();
+            password = withdrawalConfigurations.getPassword(); 
+            redisRouteCode = withdrawalConfigurations.getRedisRouteCode();
+            redisAuthorization = withdrawalConfigurations.getRedisAuthorization();
+            redisMessageId = withdrawalConfigurations.getRedisMessageId();
+            redisChannelCode = withdrawalConfigurations.getRedisChannelCode();
+            redisUrl = withdrawalConfigurations.getRedisUrl();
+            initiatorShortCode = withdrawalConfigurations.getInitiatorShortCode();
+        
+            //Insert call back details;
+            // Get and Build URL
+			URL redisURL = new URL(redisUrl);
+			// Save the callback details to redis
+			String businessKey = agentWithdrawalModel.getOriginatorConversationID();
+			String businessKeyType = agentWithdrawalModel.getBusinessKeyType();
+			String url = agentWithdrawalModel.getCallBackUrl();
+			String agencyBusinessName = agentWithdrawalModel.getBusinessName();
 
-            // Get values from request body
-            originatorConversationID = agentWithdrawalModel.getOriginatorConversationID();
-            channelCode = withdrawalConfigurations.getChannelCode();
-            customerMobile = agentWithdrawalModel.getIdentifier();
-            transactionAmount = agentWithdrawalModel.getTransactionAmount();
+			URL URL = new URL(url); //URL Builder
 
+			// Client Builder
+			OkHttpClient client = new OkHttpClient().newBuilder()
+					.build();
+			MediaType mediaType = MediaType.parse("application/json");
+			okhttp3.RequestBody body = okhttp3.RequestBody.create(mediaType,
+					"{\r\n\"keyType\": {\r\n\"businessKey\":\"" + businessKey + "\",\r\n\"businessKeyType\": "
+							+ "\"" + businessKeyType + "\",\r\n\"businessKeyName\": \"" + agencyBusinessName
+							+ "\"\r\n},\r\n\"urlType\": {\r\n\"businessKey\":"
+							+ "\"" + URL + "\",\r\n\"businessKeyType\": \"" + businessKeyType + "\"\r\n}\r\n}");
+			Request request = new Request.Builder()
+					.url(redisURL)
+					.method("POST", body)
+					.addHeader("routeCode", withdrawalConfigurations.getRedisRouteCode())
+					.addHeader("Authorization", withdrawalConfigurations.getRedisAuthorization())
+					.addHeader("messageID", withdrawalConfigurations.getRedisMessageId())
+					.addHeader("channelCode", withdrawalConfigurations.getRedisChannelCode())
+					.build();
+			ResponseBody responseBody = client.newCall(request).execute().body();
+			ObjectMapper responseMapper = new ObjectMapper();
+			PostUrlResponse entity = responseMapper.readValue(responseBody.string(), PostUrlResponse.class);
+			// entity.keyType
+			LOGGER.info("====================================[REDIS Response Status Code:] " + entity.statusCode);
+			LOGGER.info("====================================[REDIS Response Service ID:] " + entity.statusDescription);
+
+
+          
             // Get the XML Request String
             String agentWithdrawalXMLReq = AgentWithdrawalController.getAgentWithdrawalReqXML(originatorConversationID,
                     conversationID, channelCode, customerMobile);

@@ -5,13 +5,20 @@ public class AgentWithdrawalModel {
     private String thirdPartyID;
     private String callBackUrl;
     private String identifier;
-    private String voucheValidationValue;
+    private String remitterMobileNumber;
     private String externalID;
-    private String posDeviceValue;
     private double transactionAmount;
+    private String voucherValidationValue;
+    private String posDeviceID;
+    private String reciverPartyIdentifier;
+    private String receiverPartyIdentifierType;
+    private String currency;
+    private String businessKeyType;
+    private String businessName;
+
 
     //Set getters and setters    
-
+    
     /**
      * @return String return the originatorConversationID
      */
@@ -69,20 +76,6 @@ public class AgentWithdrawalModel {
     }
 
     /**
-     * @return String return the voucheValidationValue
-     */
-    public String getVoucheValidationValue() {
-        return voucheValidationValue;
-    }
-
-    /**
-     * @param voucheValidationValue the voucheValidationValue to set
-     */
-    public void setVoucheValidationValue(String voucheValidationValue) {
-        this.voucheValidationValue = voucheValidationValue;
-    }
-
-    /**
      * @return String return the externalID
      */
     public String getExternalID() {
@@ -97,20 +90,6 @@ public class AgentWithdrawalModel {
     }
 
     /**
-     * @return String return the posDeviceValue
-     */
-    public String getPosDeviceValue() {
-        return posDeviceValue;
-    }
-
-    /**
-     * @param posDeviceValue the posDeviceValue to set
-     */
-    public void setPosDeviceValue(String posDeviceValue) {
-        this.posDeviceValue = posDeviceValue;
-    }
-
-    /**
      * @return double return the transactionAmount
      */
     public double getTransactionAmount() {
@@ -122,6 +101,121 @@ public class AgentWithdrawalModel {
      */
     public void setTransactionAmount(double transactionAmount) {
         this.transactionAmount = transactionAmount;
+    }
+    
+    /**
+     * @return String return the voucherValidationValue
+     */
+    public String getVoucherValidationValue() {
+        return voucherValidationValue;
+    }
+
+    /**
+     * @param voucherValidationValue the voucherValidationValue to set
+     */
+    public void setVoucherValidationValue(String voucherValidationValue) {
+        this.voucherValidationValue = voucherValidationValue;
+    }
+
+    /**
+     * @return String return the posDeviceID
+     */
+    public String getPosDeviceID() {
+        return posDeviceID;
+    }
+
+    /**
+     * @param posDeviceID the posDeviceID to set
+     */
+    public void setPosDeviceID(String posDeviceID) {
+        this.posDeviceID = posDeviceID;
+    }
+
+
+    /**
+     * @return String return the reciverPartyIdentifier
+     */
+    public String getReciverPartyIdentifier() {
+        return reciverPartyIdentifier;
+    }
+
+    /**
+     * @param reciverPartyIdentifier the reciverPartyIdentifier to set
+     */
+    public void setReciverPartyIdentifier(String reciverPartyIdentifier) {
+        this.reciverPartyIdentifier = reciverPartyIdentifier;
+    }
+
+    /**
+     * @return String return the receiverPartyIdentifierType
+     */
+    public String getReceiverPartyIdentifierType() {
+        return receiverPartyIdentifierType;
+    }
+
+    /**
+     * @param receiverPartyIdentifierType the receiverPartyIdentifierType to set
+     */
+    public void setReceiverPartyIdentifierType(String receiverPartyIdentifierType) {
+        this.receiverPartyIdentifierType = receiverPartyIdentifierType;
+    }
+    
+    /**
+     * @return String return the remitterMobileNumber
+     */
+    public String getRemitterMobileNumber() {
+        return remitterMobileNumber;
+    }
+
+    /**
+     * @param remitterMobileNumber the remitterMobileNumber to set
+     */
+    public void setRemitterMobileNumber(String remitterMobileNumber) {
+        this.remitterMobileNumber = remitterMobileNumber;
+    }
+
+    /**
+     * @return String return the currency
+     */
+    public String getCurrency() {
+        return currency;
+    }
+
+    /**
+     * @param currency the currency to set
+     */
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+
+    /**
+     * @return String return the businessKeyType
+     */
+    public String getBusinessKeyType() {
+        return businessKeyType;
+    }
+
+    /**
+     * @param businessKeyType the businessKeyType to set
+     */
+    public void setBusinessKeyType(String businessKeyType) {
+        this.businessKeyType = businessKeyType;
+    }
+
+
+    /**
+     * @return String return the businessName
+     */
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    /**
+     * @param businessName the businessName to set
+     */
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
 }

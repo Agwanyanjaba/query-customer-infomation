@@ -1,11 +1,30 @@
 server:
- port: 8080
+ port: 8866
 
 vooma:
  bridge:
-  channel-code: 1021
-  endpoint: http://172.16.114.7:30001/payment/services/APIRequestMgrService
+  channel-code: 1014
+  key-owner: 1
   third-party-id: POS_Broker
+  requestor-system-code: 034
+  request-url: http://172.16.114.7:30001/payment/services/APIRequestMgrService
+  caller-third-party-id: POS_Broker
+  initiator-identifier: orgapi
+  initiator-short-code: 987654
+  initiator-identifier-type: 11
+  initiator-security-credential: jH/U+kcMAYybyz76d3MNBHpTOhNreCtMf8uHFpgEklN6Axc90tWE50rytt2IVs5u3cLwOdq9PGuhTbHtPcguf1gDB+tN8MytGxpJziEYB2uSY1x149zSCTXItKCKJACU3qeK5qohcmHqDccA/CBMx6aGU+X7yEMRmV+kebvc7ZW+q4teYoDqzL6PaZWLLm/hMAU42/7j2Xu9oUC0uj14SlQzv1hOQoqnIileV2tipCejj63Kr6P8ZFtPNvJfz9uZUmbpBaaETwsUpCniMTnCur0FMkghdR6WDL1cJhyS8y4qs+0RG1/H6y5sUbih1/mt3+X02VqrGpa1ahxwVHV0OC/38ae6lFQIeh4xg9X6hgR/7ZnIrOvpNjEVq2wfyDDJZ+Zp28843Telch2Adl1h2+3Rwvf4bo/urdXXFZ2F+Ug6+BvXmsDN3QJjubgQ9Dd48g/Hs0L8Ieg8tjoLtwEpc//DO8beV4OmYB5cLSh4bPOuP7+8XCNV6BmGbZ31vDEAamfCHGB7xsqwrLhOL8A6PByqfdI5La6ZYztwutVfkuWhpmCdwHdWkPDIAT/GMCf2qQUQBCrUGqq/0iL0cioCU4mND3A5jT8l3B/oqW3qAYevW/NMOSEIgbIN1zVBK0f3ob1IjssvX2VQjQPoQTd0tvqcbx8yiNjEFBXghOXYo6U=
+  #caller configs
+  caller-type: 2
+  password: NykEQz7IBFjYtaEzG08MmScbxSv4rPfhxZtSq10Fv5HtX4Wj8mImawjoWAspaROkgT5Wb57i8A45FEvZ5nJ4ges9ioza83eCB3WjEwuOztEc/C0ntD4YWWj/ONrfSNCDiQOspv1xjc6/wiSu73kF1d7LEPP9aDCmsxkM3tXAZDdCRp93L0aaSPjS1EWFF6tJe8eOtj2iFoO69zz3p3LVl/DU6oE2inTKnKVgTmutrmow3F/FL5CR5uE7ZFXMRX3QNu0fI4e0PD6YuCi842EKFGdYzy+k/qzcrjqINWjb9p9zLa3EgLR+1yhm6odFAo2Ko7prWnBXZvy2KDYoYZmH6hPwZV7KBTylVjAteRlX1rrS6a5WcL6Ie9HQen3dUt8CmeqfVKNkO2eGk2q0Imoku5wh8JCjy+TN3A3AdfGhrsueYOEWReTYl3W9sUotpfT9KeuxJQzR0mC17MKIatrdR0J/RqFcCshkmEVz3Ja7o/wm6LHk8+1zJvxnFY3/K+hBuJEpf1Ho512JGRdMPOdniCyicSomaZhIAKYkYhA7TA30l5oXMRdc6E1Vh91nDpLjSUQZ2fdy5o6ljFNfwfcq8ynS95E0uWnCAwbDVEs2m3onhBHmHKoyQpivfk/EvMvTdRTUu6Xn/pJ0q6AVjUB9ldBqgARjwOWPXEdXs5PA0Qo=
+  #receiver configs
+  receiver-party-identifier: 110589
+  receiver-party-identifierType: 13
+  #Redis configs
+  redis-url: http://kcb-general-connector-redis-kcb-common-utils.apps.test.aro.kcbgroup.com/api/generic
+  redis-route-code: "0000"
+  redis-authorization: Basic Z2F0ZXdheS0yMDM6dGVzdEAxMjM=
+  redis-message-id: 3434341
+  redis-channel-code: 203
 
 
 
