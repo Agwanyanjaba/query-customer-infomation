@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.kcb.angency.configs.WithdrawalConfigurations;
 import com.kcb.angency.models.AgentWithdrawalModel;
+import com.kcb.angency.models.PostUrlResponse;
 import com.kcb.angency.services.CustomHttpService;
 import com.kcb.angency.utils.HelperUtility;
 
@@ -137,7 +138,7 @@ public class AgentWithdrawalController {
                     + agentWithdrawalXMLReq);
             // LinkedHashMap<String, Object> agentDepositList = new LinkedHashMap<>();
 
-            String withdrawalResponse = CustomHttpService.callWithdrawalService(withdrawalConfigurations.getEndPoint(),
+            String withdrawalResponse = CustomHttpService.callWithdrawalService(withdrawalConfigurations.getRequestUrl(),
                     agentWithdrawalXMLReq);
             LOGGER.info("====================================[Account Validation XML Response] :\n "+ withdrawalResponse);
 
