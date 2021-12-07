@@ -5,7 +5,6 @@ vooma:
  bridge:
   channel-code: 1014
   key-owner: 1
-  third-party-id: POS_Broker
   requestor-system-code: 034
   request-url: http://172.16.114.7:30001/payment/services/APIRequestMgrService
   caller-third-party-id: POS_Broker
@@ -25,6 +24,10 @@ vooma:
   redis-authorization: Basic Z2F0ZXdheS0yMDM6dGVzdEAxMjM=
   redis-message-id: 3434341
   redis-channel-code: 203
+  #Caller-System-Callback-URL#
+  system-callback-url: http://kcb-mg-agencycallbackservice-kcb-wso2-gateway.apps.dev.aro.kcbgroup.com/agency-callback/transaction-result
 
-
+spring:
+ application:
+  name: agency-deposit-service
 

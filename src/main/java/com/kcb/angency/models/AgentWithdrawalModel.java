@@ -7,7 +7,7 @@ public class AgentWithdrawalModel {
     private String identifier;
     private String remitterMobileNumber;
     private String externalID;
-    private double transactionAmount;
+    private String transactionAmount;
     private String voucherValidationValue;
     private String posDeviceID;
     private String reciverPartyIdentifier;
@@ -15,6 +15,8 @@ public class AgentWithdrawalModel {
     private String currency;
     private String businessKeyType;
     private String businessName;
+    private String externalTransactionID;
+    private String voucheValidationValue;
 
 
     //Set getters and setters    
@@ -92,14 +94,14 @@ public class AgentWithdrawalModel {
     /**
      * @return double return the transactionAmount
      */
-    public double getTransactionAmount() {
+    public String getTransactionAmount() {
         return transactionAmount;
     }
 
     /**
      * @param transactionAmount the transactionAmount to set
      */
-    public void setTransactionAmount(double transactionAmount) {
+    public void setTransactionAmount(String transactionAmount) {
         this.transactionAmount = transactionAmount;
     }
     
@@ -216,6 +218,36 @@ public class AgentWithdrawalModel {
      */
     public void setBusinessName(String businessName) {
         this.businessName = businessName;
+    }
+
+
+    /**
+     * @return String return the externalTransactionID
+     */
+    public String getExternalTransactionID() {
+        return externalTransactionID;
+    }
+
+    /**
+     * @param externalTransactionID the externalTransactionID to set
+     */
+    public void setExternalTransactionID(String externalTransactionID) {
+        this.externalTransactionID = externalTransactionID;
+    }
+
+
+    /**
+     * @return String return the voucheValidationValue
+     */
+    public String getVoucheValidationValue() {
+        return voucheValidationValue;
+    }
+
+    /**
+     * @param voucheValidationValue the voucheValidationValue to set
+     */
+    public void setVoucheValidationValue(String voucheValidationValue) {
+        this.voucheValidationValue = voucheValidationValue;
     }
 
 }

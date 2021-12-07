@@ -17,15 +17,17 @@ public class WithdrawalConfigurations {
     private String callerType;
     private String password; 
     private String receiverPartyIdentifier;
+    private String receiverPartyIdentifierType;
     private String redisRouteCode;
     private String redisAuthorization;
     private String redisMessageId;
     private String redisChannelCode;
     private String redisUrl;
     private String initiatorShortCode;
-
-
+    private String callerThirdPartyId;
+    private String systemCallbackUrl;
     
+
 
 
     /**
@@ -250,6 +252,50 @@ public class WithdrawalConfigurations {
      */
     public void setInitiatorShortCode(String initiatorShortCode) {
         this.initiatorShortCode = initiatorShortCode;
+    }
+
+
+    /**
+     * @return String return the callerThirdPartyId
+     */
+    public String getCallerThirdPartyId() {
+        return callerThirdPartyId;
+    }
+
+    /**
+     * @param callerThirdPartyId the callerThirdPartyId to set
+     */
+    public void setCallerThirdPartyId(String callerThirdPartyId) {
+        this.callerThirdPartyId = callerThirdPartyId;
+    }
+    
+    /**
+     * @return String return the systemCallbackUrl
+     */
+    public String getSystemCallbackUrl() {
+        return systemCallbackUrl;
+    }
+
+    /**
+     * @param systemCallbackUrl the systemCallbackUrl to set
+     */
+    public void setSystemCallbackUrl(String systemCallbackUrl) {
+        this.systemCallbackUrl = systemCallbackUrl;
+    }
+
+
+    /**
+     * @return String return the receiverPartyIdentifierType
+     */
+    public String getReceiverPartyIdentifierType() {
+        return receiverPartyIdentifierType;
+    }
+
+    /**
+     * @param receiverPartyIdentifierType the receiverPartyIdentifierType to set
+     */
+    public void setReceiverPartyIdentifierType(String receiverPartyIdentifierType) {
+        this.receiverPartyIdentifierType = receiverPartyIdentifierType;
     }
 
 }
